@@ -37,15 +37,19 @@ const toggleEditTask = task => {
     <NewTask v-if="showCreateTask" @closeCreateTask="toggleCreateTask" />
     <EditTask v-if="showEditTask" @closeEditTask="toggleEditTask" :task="selectedTask" />
     <div>
-        <div class="flex justify-between">
+        <div class="flex justify-between xl:pt-4 sm:pt-2">
             <div>
-                <span class="text-3xl title-border">
+                <span class="sm:text-3xl text-xl title-border">
                     {{ title }}
                 </span>
             </div>
-            <div class="rounded-full p-2 border-[hsl(0,0%,25%)] border-2 hover:border-[hsl(0,0%,35%)] hover:cursor-pointer transition-colors duration-200"
+            <div class="rounded-full p-2 hidden sm:block border-[hsl(0,0%,25%)] border-2 hover:border-[hsl(0,0%,35%)] hover:cursor-pointer transition-colors duration-200"
                 @click="toggleCreateTask">
                 <svg-icon class="animate-plus-button" size="28" type="mdi" :path="mdiPlus"></svg-icon>
+            </div>
+            <div class="rounded-full block sm:hidden p-2 border-[hsl(0,0%,25%)] border-2 hover:border-[hsl(0,0%,35%)] hover:cursor-pointer transition-colors duration-200"
+                @click="toggleCreateTask">
+                <svg-icon class="animate-plus-button" size="16" type="mdi" :path="mdiPlus"></svg-icon>
             </div>
         </div>
         <div class="mt-6 grid xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-y-8 gap-x-4">

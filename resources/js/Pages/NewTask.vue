@@ -32,8 +32,8 @@ const emitCloseCreateTask = () => {
 
 <template>
     <div
-        class="absolute w-screen h-screen top-0 left-0 flex justify-center items-center backdrop-blur-sm backdrop-brightness-75 z-50">
-        <div class="pt-12 pb-8 px-6 flex flex-col gap-4 w-[500px] rounded-xl bg-[hsl(0,0%,15%)]" ref="target">
+        class="absolute w-screen h-screen top-0 left-0 lg:flex justify-center items-center lg:backdrop-blur-lg lg:backdrop-brightness-75 z-50">
+        <div class="pt-12 pb-8 px-6 flex flex-col gap-4 w-full h-full lg:w-[500px] lg:rounded-xl bg-[hsl(0,0%,15%)]" ref="target">
             <div class="text-2xl">Create a Task</div>
             <div>Title</div>
             <input v-model="form.title" placeholder="Drink water"

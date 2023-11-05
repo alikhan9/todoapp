@@ -32,11 +32,12 @@ defineProps({
 
 <template>
     <Link :href="url" :method="method" :data="{ type: type }" as="button" :class="{
-        'px-6 py-3 transition flex gap-4 text-white w-full hover:bg-[hsl(0,0%,18%)] hover:brightness-100': true,
+        'px-6 py-3 transition flex items-center gap-4 text-white w-full hover:bg-[hsl(0,0%,18%)] hover:brightness-100': true,
         'border-r-4 border-green-500': active,
         'brightness-75': !active
     }">
-    <svg-icon type="mdi" :path="path"></svg-icon>
-    <div>{{ title }}</div>
+    <svg-icon class="box sm:box" type="mdi" size="32" :path="path"></svg-icon>
+    <svg-icon class="hidden sm:box" type="mdi" :path="path"></svg-icon>
+    <div class="text-xl sm:text-base">{{ title }}</div>
     </Link>
 </template>

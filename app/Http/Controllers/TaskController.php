@@ -20,7 +20,7 @@ class TaskController extends Controller
             $title = 'Important tasks';
         }
 
-        if($request->type == 'all') {
+        if(!$request->has('type')) {
             $tasks = auth()->user()->tasks();
         }
         if($request->type == 'completed') {
@@ -73,6 +73,16 @@ class TaskController extends Controller
 
     public function update(Request $request, Task $task)
     {
+        $result = $request->validate([
+            'id' => 'required|numeric',
+            'created_at' => 'required|date',
+            'updated_at' => 'required|date',
+            'title' => 'required|string|max:255',
+            'description' => 'required|max:65535',
+            'date' => 'required|date',
+            'completed' => 'required|boolean',
+            'important' => 'required|boolean'
+        ]);
         $task->update($request->all());
         return back();
     }
