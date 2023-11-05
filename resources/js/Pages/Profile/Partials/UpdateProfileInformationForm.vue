@@ -16,18 +16,11 @@ defineProps({
 });
 
 const user = usePage().props.auth.user;
-const url = ref();
 const form = useForm({
     name: user.name,
     email: user.email,
-    image: user.image,
 });
 
-const onFileChange = e => {
-    const file = e.target.files[0];
-    url.value = URL.createObjectURL(file);
-    form.image = file;
-}
 
 </script>
 
@@ -50,14 +43,6 @@ const onFileChange = e => {
                     autocomplete="name" />
 
                 <InputError class="mt-2" :message="form.errors.name" />
-            </div>
-            <div class="mt-4">
-                <InputLabel for="image" value="Avatar" />
-                <div class="py-1 px-2 inline-block hover:cursor-pointer bg-blue-500 rounded my-2"
-                    onclick="document.getElementById('getFile').click()">Select</div>
-                <input name="image" type='file' id="getFile" class="hidden" @change="onFileChange">
-                <img class="max-w-[100px] mt-2 rounded" placeholder="nani" accept="image/*" v-if="url" :src="url" />
-                <InputError class="mt-2" :message="form.errors.image" />
             </div>
 
             <div>
