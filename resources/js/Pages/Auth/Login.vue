@@ -40,19 +40,19 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" class="text-white" />
+                <InputLabel for="email" value="Email" />
 
                 <TextInput id="email" type="email"
-                    class="bg-[hsl(0,0%,10%)] mt-1 px-4 py-2 mb-2 focus:outline-none  rounded-md w-full" v-model="form.email"
+                     v-model="form.email"
                     required autofocus autocomplete="username" />
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" class="text-white" />
+                <InputLabel for="password" value="Password" />
 
-                <TextInput id="password" type="password" class="bg-[hsl(0,0%,10%)] mt-1 px-4 py-2 mb-2 focus:outline-none  rounded-md w-full" v-model="form.password" required
+                <TextInput id="password" type="password" v-model="form.password" required
                     autocomplete="current-password" />
 
                 <InputError class="mt-2" :message="form.errors.password" />
@@ -61,14 +61,14 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    <span class="ml-2 text-sm text-[hsl(0,0%,90%)]">Remember me</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Forgot your password?
+                <Link v-if="canResetPassword" as="button" :href="route('register')"
+                    class="underline text-sm text-[hsl(0,0%,80%)] hover:text-[hsl(0,0%,100%)] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                No account? Register here
                 </Link>
 
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">

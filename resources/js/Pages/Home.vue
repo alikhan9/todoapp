@@ -1,27 +1,41 @@
 <script setup>
 import SvgIcon from '@jamescoyle/vue-icon';
 import NewTask from './NewTask.vue'
-import { mdiPlus, mdiFileEdit, mdiDelete } from '@mdi/js';
+import EditTask from './EditTask.vue';
+import Task from '@/Components/Task.vue';
+import { mdiPlus } from '@mdi/js';
 import { ref } from 'vue';
+import { Head } from '@inertiajs/vue3';
 
 defineProps({
     title: {
         type: String,
         default: 'All Tasks'
-    }
+    },
+    tasks: Object
 })
 
-const showCreateTasks = ref(false);
+const showCreateTask = ref(false);
+const showEditTask = ref(false);
+const selectedTask = ref(null);
 
 const toggleCreateTask = () => {
-    showCreateTasks.value = !showCreateTasks.value;
+    showCreateTask.value = !showCreateTask.value;
+}
+
+const toggleEditTask = task => {
+    if (selectedTask.value != task)
+        selectedTask.value = task;
+    showEditTask.value = !showEditTask.value;
 }
 
 </script>
 
 
 <template>
-    <NewTask v-if="showCreateTasks" @closeCreateTask="toggleCreateTask" />
+    <Head title="Tasks" />
+    <NewTask v-if="showCreateTask" @closeCreateTask="toggleCreateTask" />
+    <EditTask v-if="showEditTask" @closeEditTask="toggleEditTask" :task="selectedTask" />
     <div>
         <div class="flex justify-between">
             <div>
@@ -34,27 +48,8 @@ const toggleCreateTask = () => {
                 <svg-icon class="animate-plus-button" size="28" type="mdi" :path="mdiPlus"></svg-icon>
             </div>
         </div>
-        <div class="mt-6">
-            <div class="rounded-xl border-[hsl(0,0%,25%)] bg-[hsl(0,0%,20%)] border-2 px-4 py-6 w-80 flex flex-col gap-4">
-                <div class="text-xl">
-                    Titre
-                </div>
-                <div class="h-[100px] line-clamp-4 text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, excepturi dolor sunt suscipit ducimus
-                    magni ex quidem quas unde fuga omnis inventore modi dolore alias atque sed maxime vel labore!
-                </div>
-                <div>
-                    13/08/2021
-                </div>
-                <div class="flex justify-between items-center">
-                    <button class="px-3 py-1 bg-green-500 rounded-full">Completed</button>
-                    <!-- <button class="px-3 py-1 bg-red-500 rounded-full">Incomplete</button> -->
-                    <div class="flex gap-4">
-                        <svg-icon type="mdi" class="hover:cursor-pointer" :path="mdiFileEdit"></svg-icon>
-                        <svg-icon type="mdi" class="hover:cursor-pointer" :path="mdiDelete"></svg-icon>
-                    </div>
-                </div>
-            </div>
+        <div class="mt-6 grid xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-y-8 gap-x-4">
+            <Task v-for="(task, index) in tasks" @showEditTask="toggleEditTask" :key="index" :task="task" />
         </div>
 
     </div>

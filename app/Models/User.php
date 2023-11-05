@@ -49,22 +49,22 @@ class User extends Authenticatable
 
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class)->get();
     }
 
     public function completedTasks()
     {
-        return $this->hasMany(Task::class)->where('completed', true);
+        return $this->hasMany(Task::class)->where('completed', true)->get();
     }
 
     public function importantTasks()
     {
-        return $this->hasMany(Task::class)->where('important', true);
+        return $this->hasMany(Task::class)->where('important', true)->get();
     }
 
     public function toDoNowtasks()
     {
-        return $this->hasMany(Task::class)->where('date', Carbon::now()->toDateString());
+        return $this->hasMany(Task::class)->where('date', Carbon::now()->toDateString())->get();
     }
 
 }

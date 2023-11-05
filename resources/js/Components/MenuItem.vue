@@ -21,17 +21,18 @@ defineProps({
         default: 'Title',
     },
     method: {
-        type:String,
+        type: String,
         default: 'GET'
-    }
+    },
+    type: String
 
 })
 
 </script>
 
 <template>
-    <Link :href="url" :method="method" :class="{
-        'px-6 py-3 transition flex gap-4 text-white  hover:bg-[hsl(0,0%,18%)] hover:brightness-100': true,
+    <Link :href="url" :method="method" :data="{ type: type }" as="button" :class="{
+        'px-6 py-3 transition flex gap-4 text-white w-full hover:bg-[hsl(0,0%,18%)] hover:brightness-100': true,
         'border-r-4 border-green-500': active,
         'brightness-75': !active
     }">
