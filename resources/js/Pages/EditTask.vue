@@ -31,8 +31,8 @@ const emitCloseEditTask = () => {
 <template>
     <div
     class="absolute w-screen h-screen top-0 left-0 lg:flex justify-center items-center lg:backdrop-blur-lg lg:backdrop-brightness-75 z-50">
-    <div class="pt-12 pb-8 px-6 flex flex-col gap-4 w-full h-full lg:w-[500px] lg:rounded-xl bg-[hsl(0,0%,15%)]" ref="target">
-            <div class="text-2xl">Create a Task</div>
+        <div class="pt-12 pb-8 px-6 flex flex-col gap-4 md:max-h-[80vh] w-full h-full lg:w-[500px] lg:rounded-xl bg-[hsl(0,0%,15%)]" ref="target">
+            <div class="text-2xl">Edit Task</div>
             <div>Title</div>
             <input v-model="form.title" placeholder="Drink water"
                 class="bg-[hsl(0,0%,10%)] px-4 py-2 mb-2 focus:outline-none  rounded-md w-full" type="text">

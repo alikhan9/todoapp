@@ -38,9 +38,9 @@ onClickOutside(target, (event) => toggleUserDetails())
                 <div class="flex gap-3 relative items-center hover:cursor-pointer rounded-lg px-6 py-4 hover:scale-[1.02] transition
                      hover:bg-[hsl(0,0%,10%)]" @click="toggleUserDetails">
                     <div class="w-20 h-20 rounded-[50%] overflow-hidden flex justify-center items-center">
-                        <img src="../../images/kabita-darlami-okiDQrCoTd4-unsplash.jpg" />
+                        <img :src="user.image" />
                     </div>
-                    <div class="truncate max-w-[80px]">{{ user.name }}</div>
+                    <div class="truncate max-w-[80px]">{{ user.name }} </div>
                 </div>
                 <UserDetails class="z-30" ref="target" v-if="showUserDetails" @closeUserDetails="toggleUserDetails"
                     :user="user" />
@@ -48,7 +48,7 @@ onClickOutside(target, (event) => toggleUserDetails())
             </div>
             <div>
                 <MenuItem title="All Tasks" url="/" :active="active == 'all'" />
-                <MenuItem  :path="mdiPlaylistStar" title="Important" url="/" method="GET" type="important"
+                <MenuItem :path="mdiPlaylistStar" title="Important" url="/" method="GET" type="important"
                     :active="active == 'important'" />
                 <MenuItem url="/" :path="mdiCheckDecagramOutline" title="Completed" type="completed"
                     :active="active == 'completed'" />
@@ -64,7 +64,7 @@ onClickOutside(target, (event) => toggleUserDetails())
             <div class="flex justify-between items-center">
                 <div class="flex gap-3 relative items-center  rounded-lg px-6 py-4" @click="toggleUserDetails">
                     <div class="w-14 h-14 rounded-[50%] overflow-hidden flex justify-center items-center">
-                        <img src="../../images/kabita-darlami-okiDQrCoTd4-unsplash.jpg" />
+                        <img :src="user.image" />
                     </div>
                     <div class="truncate max-w-[80px]">{{ user.name }}</div>
                 </div>
@@ -86,7 +86,8 @@ onClickOutside(target, (event) => toggleUserDetails())
                 :path="mdiArrowCollapseLeft" title="SIGN OUT" />
         </div>
 
-        <div class="bg-[hsl(0,0%,15%)] sm:border-2 sm:rounded-xl sm:border-[hsl(0,0%,25%)] sm:ml-[270px] w-full pb-12 px-6">
+        <div class="bg-[hsl(0,0%,15%)] sm:border-2 sm:rounded-xl sm:border-[hsl(0,0%,25%)] lg:h-[90vh] sm:ml-[270px] w-full px-6">
             <slot />
         </div>
-</div></template>
+    </div>
+</template>

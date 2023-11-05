@@ -15,14 +15,14 @@ const emitCloseUserDetails = () => {
 </script>
 
 <template>
-    <div class="w-[300px] absolute bg-white rounded-2xl top-52 text-black">
+    <div class="min-w-[300px] absolute bg-white rounded-2xl top-40 text-black">
         <div class="flex gap-3 items-center pt-12 pl-6">
             <div class="w-14 h-14 rounded-[50%] overflow-hidden flex justify-center items-center">
-                <img src="../../images/kabita-darlami-okiDQrCoTd4-unsplash.jpg" />
+                <img :src="user.image" />
             </div>
             <div>
                 <div class="truncate">{{ user.name }}</div>
-                <div class="text-gray-700 brightness-75 italic">{{ user.email }}</div>
+                <div class="text-gray-700 brightness-75 italic pr-8">{{ user.email }}</div>
             </div>
         </div>
         <Link href="/profile" @click="emitCloseUserDetails" as="button" class="mb-2 py-2 mt-6 ml-3 pl-3 w-[250px] flex gap-4 hover:cursor-pointer hover:bg-blue-500 hover:text-white rounded-lg">
