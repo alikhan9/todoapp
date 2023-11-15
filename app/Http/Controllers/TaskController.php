@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class TaskController extends Controller
@@ -85,6 +86,14 @@ class TaskController extends Controller
         ]);
         $task->update($request->all());
         return back();
+    }
+
+    public function getAvatar()
+    {
+        $position = strpos(auth()->user()->image, 'avatars/') + strlen('avatars/');
+        $fileName = substr(auth()->user()->image, $position);
+        // dd($fileName);
+        return  Storage::url($fileName);
     }
 
 }

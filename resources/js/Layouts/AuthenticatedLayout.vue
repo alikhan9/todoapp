@@ -2,10 +2,11 @@
 import MenuItem from '../Components/MenuItem.vue';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiPlaylistStar, mdiCheckDecagramOutline, mdiCalendarClockOutline, mdiArrowCollapseLeft, mdiMenu, mdiCog } from '@mdi/js';
-import { usePage } from '@inertiajs/vue3'
-import { computed, ref } from 'vue';
+import { usePage, router } from '@inertiajs/vue3'
+import { computed, ref, onMounted } from 'vue';
 import UserDetails from '@/Components/UserDetails.vue';
 import { onClickOutside } from '@vueuse/core'
+import axios from 'axios';
 
 
 
@@ -15,6 +16,12 @@ const showMobileMenu = ref(false);
 const user = computed(() => page.props.auth.user)
 const active = computed(() => page.props.active)
 const target = ref();
+
+onMounted(() => {
+    router.get('/avatar').then(res => {
+        console.log(res.data);
+    });
+})
 
 const toggleUserDetails = () => {
     showUserDetails.value = !showUserDetails.value;
@@ -86,7 +93,8 @@ onClickOutside(target, (event) => toggleUserDetails())
                 :path="mdiArrowCollapseLeft" title="SIGN OUT" />
         </div>
 
-        <div class="bg-[hsl(0,0%,15%)] sm:border-2 sm:rounded-xl sm:border-[hsl(0,0%,25%)] lg:h-[90vh] sm:ml-[270px] w-full px-6">
+        <div
+            class="bg-[hsl(0,0%,15%)] sm:border-2 sm:rounded-xl sm:border-[hsl(0,0%,25%)] lg:h-[90vh] sm:ml-[270px] w-full px-6">
             <slot />
         </div>
     </div>
