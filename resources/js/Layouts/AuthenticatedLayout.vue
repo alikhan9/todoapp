@@ -17,12 +17,6 @@ const user = computed(() => page.props.auth.user)
 const active = computed(() => page.props.active)
 const target = ref();
 
-onMounted(() => {
-    axios.get('/avatar').then(res => {
-        console.log(res.data);
-    });
-})
-
 const toggleUserDetails = () => {
     showUserDetails.value = !showUserDetails.value;
 }
