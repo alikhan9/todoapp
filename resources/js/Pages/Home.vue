@@ -21,12 +21,22 @@ const selectedTask = ref(null);
 
 const toggleCreateTask = () => {
     showCreateTask.value = !showCreateTask.value;
+    if (showCreateTask.value) {
+        document.getElementsByTagName('body')[0].style.maxHeight = "600px";
+        document.getElementsByTagName('body')[0].style.overflow = "hidden";
+    } else
+        document.getElementsByTagName('body')[0].style.maxHeight = "none";
 }
 
 const toggleEditTask = task => {
     if (selectedTask.value != task)
         selectedTask.value = task;
     showEditTask.value = !showEditTask.value;
+    if (showCreateTask.value) {
+        document.getElementsByTagName('body')[0].style.maxHeight = "600px";
+        document.getElementsByTagName('body')[0].style.overflow = "hidden";
+    } else
+        document.getElementsByTagName('body')[0].style.maxHeight = "none";
 }
 
 </script>
