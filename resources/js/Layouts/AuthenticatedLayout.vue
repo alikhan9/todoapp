@@ -18,7 +18,7 @@ const active = computed(() => page.props.active)
 const target = ref();
 
 onMounted(() => {
-    router.get('/avatar').then(res => {
+    axios.get('/avatar').then(res => {
         console.log(res.data);
     });
 })
