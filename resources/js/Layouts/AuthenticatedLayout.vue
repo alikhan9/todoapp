@@ -31,7 +31,7 @@ onClickOutside(target, (event) => toggleUserDetails())
 
 
 <template>
-    <div class="sm:flex gap-4 bg-[hsl(0,0%,15%)] sm:bg-[hsl(0,0%,10%)] text-white min-h-screen sm:p-12">
+    <div class="sm:flex gap-4 bg-[hsl(0,0%,15%)] overflow-hidden sm:bg-[hsl(0,0%,10%)] text-white min-h-screen sm:p-12">
 
         <div
             class="bg-[hsl(0,0%,15%)] border-2 rounded-xl border-[hsl(0,0%,25%)] flex-col justify-between w-[250px] hidden sm:flex sm:fixed h-[90vh]">
@@ -73,23 +73,71 @@ onClickOutside(target, (event) => toggleUserDetails())
             </div>
         </div>
 
-        <div v-if="showMobileMenu" class="sm:hidden absolute h-screen w-screen z-50 bg-[hsl(0,0%,15%)]">
-            <MenuItem @click="toggleMobileMenu" title="All Tasks" url="/" :active="active == 'all'" />
-            <MenuItem @click="toggleMobileMenu" :path="mdiPlaylistStar" title="Important" url="/" method="GET"
-                type="important" :active="active == 'important'" />
-            <MenuItem url="/" @click="toggleMobileMenu" :path="mdiCheckDecagramOutline" title="Completed" type="completed"
-                :active="active == 'completed'" />
-            <MenuItem url="/" @click="toggleMobileMenu" :path="mdiCalendarClockOutline" title="Do it today" type="toDoNow"
-                :active="active == 'toDoNow'" />
-            <MenuItem @click="toggleMobileMenu" url="/profile" :path="mdiCog" title="Manage account"
-                :active="active == 'manage'" />
-            <MenuItem @click="toggleMobileMenu" class="rounded-b-xl" method="POST" url="/logout"
-                :path="mdiArrowCollapseLeft" title="SIGN OUT" />
-        </div>
+        <Transition name="slide" appear="">
+            <div v-if="showMobileMenu" class="sm:hidden overflow-hidden absolute w-full z-50 bg-[hsl(0,0%,15%)]">
+                <MenuItem @click="toggleMobileMenu" title="All Tasks" url="/" :active="active == 'all'" />
+                <MenuItem @click="toggleMobileMenu" :path="mdiPlaylistStar" title="Important" url="/" method="GET"
+                    type="important" :active="active == 'important'" />
+                <MenuItem url="/" @click="toggleMobileMenu" :path="mdiCheckDecagramOutline" title="Completed"
+                    type="completed" :active="active == 'completed'" />
+                <MenuItem url="/" @click="toggleMobileMenu" :path="mdiCalendarClockOutline" title="Do it today"
+                    type="toDoNow" :active="active == 'toDoNow'" />
+                <MenuItem @click="toggleMobileMenu" url="/profile" :path="mdiCog" title="Manage account"
+                    :active="active == 'manage'" />
+                <MenuItem @click="toggleMobileMenu" class="rounded-b-xl" method="POST" url="/logout"
+                    :path="mdiArrowCollapseLeft" title="SIGN OUT" />
+            </div>
+        </Transition>
 
-        <div
-            class="bg-[hsl(0,0%,15%)] sm:border-2 overflow-hidden sm:rounded-xl sm:border-[hsl(0,0%,25%)] lg:h-[90vh] sm:ml-[270px] w-full px-6">
-            <slot />
-        </div>
+        <Transition name="slide-reverse" appear="">
+            <div v-if="!showMobileMenu"
+                class="bg-[hsl(0,0%,15%)] sm:border-2 overflow-hidden sm:rounded-xl sm:border-[hsl(0,0%,25%)] lg:h-[90vh] sm:ml-[270px] w-full px-6">
+                <slot />
+            </div>
+        </Transition>
     </div>
 </template>
+
+<style>
+.slide-enter-active,
+.slide-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+    transform: translateX(-100vw);
+}
+.slide-reverse-enter-active,
+.slide-reverse-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+
+.slide-reverse-enter-from,
+.slide-reverse-leave-to {
+    transform: translateX(100vw);
+}
+
+.slide-from-top-enter-active,
+.slide-from-top-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+
+.slide-from-top-enter-from,
+.slide-from-top-leave-to {
+    transform: translateY(-100vh);
+}
+
+
+.pop-enter-active,
+.pop-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+
+.pop-enter-from,
+.pop-leave-to {
+    transform: scale(0);
+}
+
+
+</style>

@@ -25,7 +25,7 @@ const emitShowCreateTask = () => {
 </script>
 
 <template>
-    <div class="rounded-xl border-[hsl(0,0%,25%)] bg-[hsl(0,0%,20%)] border-2 px-4 py-6 w-full flex flex-col gap-4">
+    <div class="rounded-xl border-[hsl(0,0%,25%)] max-h-[283px] bg-[hsl(0,0%,20%)] border-2 px-4 py-6 w-full flex flex-col gap-4">
         <div class="sm:text-xl text-lg">
             {{ task.title }}
         </div>
