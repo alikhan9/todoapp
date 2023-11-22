@@ -46,7 +46,7 @@ const toggleEditTask = task => {
     <Head title="Tasks" />
     <NewTask v-if="showCreateTask" @closeCreateTask="toggleCreateTask" />
     <EditTask v-if="showEditTask" @closeEditTask="toggleEditTask" :task="selectedTask" />
-    <div>
+    <div class="h-full">
         <div class="flex justify-between xl:pt-4 sm:pt-2">
             <div>
                 <span class="sm:text-3xl text-xl title-border">
@@ -62,7 +62,7 @@ const toggleEditTask = task => {
                 <svg-icon class="animate-plus-button" size="16" type="mdi" :path="mdiPlus"></svg-icon>
             </div>
         </div>
-        <div class="mt-6 grid xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-y-8 gap-x-4">
+        <div class="mt-6 grid xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 overflow-auto px-2 h-[79vh] gap-y-8 gap-x-4">
             <Task v-for="(task, index) in tasks" @showEditTask="toggleEditTask" :key="index" :task="task" />
         </div>
 

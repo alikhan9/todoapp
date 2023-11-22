@@ -88,7 +88,7 @@ onClickOutside(target, (event) => toggleUserDetails())
         </div>
 
         <div
-            class="bg-[hsl(0,0%,15%)] sm:border-2 sm:rounded-xl sm:border-[hsl(0,0%,25%)] lg:h-[90vh] sm:ml-[270px] w-full px-6">
+            class="bg-[hsl(0,0%,15%)] sm:border-2 overflow-hidden sm:rounded-xl sm:border-[hsl(0,0%,25%)] lg:h-[90vh] sm:ml-[270px] w-full px-6">
             <slot />
         </div>
     </div>
