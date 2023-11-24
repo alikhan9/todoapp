@@ -38,7 +38,7 @@ const onFileChange = e => {
 
         <Head title="Register" />
         <form @submit.prevent="submit"
-            class="sm:w-[500px] w-sreen sm:min-h-full min-h-screen flex items-center justify-center sm:block ">
+            class="sm:w-[500px] w-full h-screen sm:h-full flex items-center justify-center sm:block">
             <div>
                 <div>
                     <InputLabel for="name" value="Name" />
