@@ -10,6 +10,7 @@ Route::delete('/task/delete/{task}', [TaskController::class, 'delete'])->middlew
 Route::post('/task/toggle/{task}', [TaskController::class, 'toggle'])->middleware(['auth', 'verified']);
 Route::post('/task/update/{task}', [TaskController::class, 'update'])->middleware(['auth', 'verified']);
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
